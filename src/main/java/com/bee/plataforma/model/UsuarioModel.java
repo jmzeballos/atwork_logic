@@ -16,7 +16,6 @@ public class UsuarioModel {
    private String apellido;
    private String dni;
    private int estado;
-   private int codigodisponible;
    private int empresa_id;
    private String usuario;
    private String password;
@@ -83,13 +82,7 @@ public class UsuarioModel {
         this.estado = estado;
     }
 
-    public int getCodigodisponible() {
-        return codigodisponible;
-    }
-
-    public void setCodigodisponible(int codigodisponible) {
-        this.codigodisponible = codigodisponible;
-    }
+  
 
     public int getEmpresa_id() {
         return empresa_id;

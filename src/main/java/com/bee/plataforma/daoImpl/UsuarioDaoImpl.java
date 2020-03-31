@@ -59,10 +59,10 @@ public class UsuarioDaoImpl implements UsuarioDao {
             if (usuario.getPasswordEmpresa() != null) {
 
                 empresaEncryp = (usuario.getPasswordEmpresa().equals("") ? "" : EncryptDecryptUtil.encryptPhrase(usuario.getPasswordEmpresa()));
-            }else{
-                usuario.setPasswordEmpresa((usuario.getPasswordEmpresa()!=null?usuario.getPasswordEmpresa():""));
+            } else {
+                usuario.setPasswordEmpresa((usuario.getPasswordEmpresa() != null ? usuario.getPasswordEmpresa() : ""));
             }
-            
+
             String query = "select * from sh_atworkpf.fn_usuario_login_v7('" + usuario.getUsuario() + "','" + usuario.getPassword() + "','" + usuario.getPasswordEmpresa() + "','" + empresaEncryp + "')";
 
             System.out.println(query);
@@ -73,11 +73,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
                 usuario.setEmpresa_id(rs.getInt("out_idemp"));
                 usuario.setCorreo(rs.getString("out_email"));
                 usuario.setNombre(rs.getString("out_nombre"));
-                System.out.println("Respuesta : " + rs.getString("out_nombre"));
+
                 usuario.setApellido(rs.getString("out_apellidos"));
                 usuario.setDni(rs.getString("out_dni"));
                 usuario.setVenta_id(rs.getInt("out_idventa"));
                 usuario.setCodigo_disponible(rs.getInt("out_coddis"));
+                System.out.println("Respuesta : " + rs.getString("out_coddis"));
                 usuario.setLogo_empresa(rs.getString("out_img64"));
                 usuario.setContenido(rs.getString("out_resp2"));
                 usuario.setDetalle_venta(rs.getString("out_detalleve"));
