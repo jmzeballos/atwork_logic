@@ -20,13 +20,17 @@ public class UsuarioModel {
    private int empresa_id;
    private String usuario;
    private String password;
+   
+   private String passwordEmpresa;
    /*Para realizar venta*/
    private int venta_id;
    private int codigo_disponible;   
    private String logo_empresa;
+   private String detalle_venta;
    /*Para validar respuesta de la base de datos*/
    private int respuesta;
-   private String passwordEmpresa;
+   private String contenido;
+ 
 
     public UsuarioModel() {
     }
@@ -149,6 +153,22 @@ public class UsuarioModel {
 
     public void setPasswordEmpresa(String passwordEmpresa) {
         this.passwordEmpresa = passwordEmpresa;
+    }
+
+    public String getDetalle_venta() {
+        return detalle_venta;
+    }
+
+    public void setDetalle_venta(String detalle_venta) {
+        this.detalle_venta = detalle_venta;
+    }
+
+    public String getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
     }
 
    
