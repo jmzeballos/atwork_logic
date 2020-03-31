@@ -19,13 +19,14 @@ public class UsuarioModel {
    private int empresa_id;
    private String usuario;
    private String password;
-   
    private String passwordEmpresa;
    /*Para realizar venta*/
    private int venta_id;
    private int codigo_disponible;   
    private String logo_empresa;
    private String detalle_venta;
+   private String fecha_venta;
+   private String fecha_actual;
    /*Para validar respuesta de la base de datos*/
    private int respuesta;
    private String contenido;
@@ -162,6 +163,22 @@ public class UsuarioModel {
 
     public void setContenido(String contenido) {
         this.contenido = contenido;
+    }
+
+    public String getFecha_venta() {
+        return fecha_venta;
+    }
+
+    public void setFecha_venta(String fecha_venta) {
+        this.fecha_venta = fecha_venta;
+    }
+
+    public String getFecha_actual() {
+        return fecha_actual;
+    }
+
+    public void setFecha_actual(String fecha_actual) {
+        this.fecha_actual = fecha_actual;
     }
 
    

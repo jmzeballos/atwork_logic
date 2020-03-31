@@ -63,7 +63,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
                 usuario.setPasswordEmpresa((usuario.getPasswordEmpresa() != null ? usuario.getPasswordEmpresa() : ""));
             }
 
-            String query = "select * from sh_atworkpf.fn_usuario_login_v7('" + usuario.getUsuario() + "','" + usuario.getPassword() + "','" + usuario.getPasswordEmpresa() + "','" + empresaEncryp + "')";
+            String query = "select * from sh_atworkpf.fn_usuario_login_v8('" + usuario.getUsuario() + "','" + usuario.getPassword() + "','" + usuario.getPasswordEmpresa() + "','" + empresaEncryp + "')";
 
             System.out.println(query);
             ResultSet rs = cn.Query(query);
@@ -73,7 +73,6 @@ public class UsuarioDaoImpl implements UsuarioDao {
                 usuario.setEmpresa_id(rs.getInt("out_idemp"));
                 usuario.setCorreo(rs.getString("out_email"));
                 usuario.setNombre(rs.getString("out_nombre"));
-
                 usuario.setApellido(rs.getString("out_apellidos"));
                 usuario.setDni(rs.getString("out_dni"));
                 usuario.setVenta_id(rs.getInt("out_idventa"));

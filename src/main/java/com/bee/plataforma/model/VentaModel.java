@@ -25,7 +25,7 @@ public class VentaModel {
     private String jsonFE;
     private String jsonCodigo;
     private String cadenacodigo;
-
+    private String fechaActual;
     public int getVenta_id() {
         return venta_id;
     }
@@ -112,6 +112,14 @@ public class VentaModel {
 
     public void setCadenacodigo(String cadenacodigo) {
         this.cadenacodigo = cadenacodigo;
+    }
+
+    public String getFechaActual() {
+        return fechaActual;
+    }
+
+    public void setFechaActual(String fechaActual) {
+        this.fechaActual = fechaActual;
     }
     
 

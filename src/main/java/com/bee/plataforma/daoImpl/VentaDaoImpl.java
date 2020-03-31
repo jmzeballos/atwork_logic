@@ -27,17 +27,17 @@ public class VentaDaoImpl implements ventaDao{
             conexion cn = new conexion();
             
             String detalle = venta.getListaVentaDetalle()!=null? csv.generarCsv(venta.getListaVentaDetalle()) :"";
-            String query = "select * from sh_atworkpf.fn_registra_venta_1p("+venta.getCliente_id()+","+venta.getTotal_venta()+",'"+detalle+"')";
+            String query = "select * from sh_atworkpf.fn_registra_venta_v2("+venta.getCliente_id()+","+venta.getTotal_venta()+",'"+detalle+"')";
             logger.error(query);
             
             System.out.println("Query "+query);
-            ResultSet rs = cn.Query(query);
-         
+            ResultSet rs = cn.Query(query);         
             while (rs.next()) {
                 venta.setVenta_id(rs.getInt("out_ventaid"));
-                venta.setFecha(rs.getString("out_fecha"));
+                venta.setFecha(rs.getString("out_fechaven"));
                 venta.setRespuesta(rs.getInt("out_resp"));
                 venta.setCadenacodigo(rs.getString("out_codreser")); 
+                venta.setFechaActual(rs.getString("out_fecha"));
                 
             }
         } catch (Exception e) {
@@ -48,7 +48,28 @@ public class VentaDaoImpl implements ventaDao{
 
     @Override
     public VentaModel actualizarVenta(VentaModel venta) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            try {
+            Csv csv = new Csv();
+            conexion cn = new conexion();
+            venta.setRespuesta(3);
+            String detalle = venta.getListaVentaDetalle()!=null? csv.generarCsv(venta.getListaVentaDetalle()) :"";
+            String query = "select * from sh_atworkpf.fn_actualizar_venta_v3("+venta.getVenta_id()+",'"+detalle+"',"+venta.getTotal_venta()+")";
+            logger.error(query);
+            
+            System.out.println("Query "+query);
+            ResultSet rs = cn.Query(query);         
+            while (rs.next()) {
+                venta.setVenta_id(rs.getInt("out_ventaid"));
+                venta.setFecha(rs.getString("out_fechaven"));
+                venta.setRespuesta(rs.getInt("out_resp"));
+                venta.setCadenacodigo(rs.getString("out_codreser")); 
+                venta.setFechaActual(rs.getString("out_fecha"));
+                
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return venta;
     }
     
 }
