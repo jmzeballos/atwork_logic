@@ -16,18 +16,34 @@ import org.springframework.stereotype.Service;
  * @author Lealva
  */
 @Service
-public class VentaServiceImpl implements VentaService{
+public class VentaServiceImpl implements VentaService {
+
     @Autowired
     private ventaDao venDao;
-    
+
     @Override
     public VentaModel guardarVenta(VentaModel venta) throws Exception {
-       return venDao.guardarVenta(venta);
+        return venDao.guardarVenta(venta);
     }
 
     @Override
     public VentaModel actualizarVenta(VentaModel venta) throws Exception {
-      return venDao.actualizarVenta(venta);
+        return venDao.actualizarVenta(venta);
     }
-    
+
+    @Override
+    public int limpiarVenta(VentaModel venta) throws Exception {
+        return venDao.limpiarVenta(venta);
+    }
+
+    @Override
+    public VentaModel generarCorrelativo(int venta_id) {
+        return venDao.generarCorrelativo(venta_id);
+    }
+
+    @Override
+    public int guardarJson(int venta_id, String jsonVentaFe, String jsonCodigoCanje) {
+        return venDao.guardarJson(venta_id, jsonVentaFe, jsonCodigoCanje);
+    }
+
 }

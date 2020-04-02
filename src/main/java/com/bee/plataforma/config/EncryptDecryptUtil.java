@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class EncryptDecryptUtil {
 
     static String key= "BEE@C0M3rC3";
-    
+    static String keyEnvioCorreo ="bee-WSRESTBEE";
     public static String decryptPhrase(String phrase) throws Exception {
         if (phrase == null) {
             return null;
@@ -36,11 +36,17 @@ public class EncryptDecryptUtil {
         encrypt = encriptadorPassword.encriptado(password);
         return encrypt;
     }
-    
+     public static String encryptKeyEnvioCorreo(String cadema) throws Exception {
+        String encrypt = null;
+        EncriptadorPassword encriptadorPassword = new EncriptadorPassword(keyEnvioCorreo);
+        encrypt = encriptadorPassword.encriptado(cadema);
+        return encrypt;
+    }
+   
     public static void main(String[] args) {
         try {
             System.out.println("---------------------------------------------");
-            String value="123";
+            String value="71489400";
                                            
           //  String value = "8FP4H23FM/odSQghXVgD7A==";
             value=EncryptDecryptUtil.encryptPhrase(value);

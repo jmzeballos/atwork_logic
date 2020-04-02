@@ -18,27 +18,29 @@ import org.springframework.stereotype.Repository;
  * @author Lealva
  */
 @Repository
-public class VentaDaoImpl implements ventaDao{
+public class VentaDaoImpl implements ventaDao {
+
     Logger logger = Logger.getLogger(VentaDaoImpl.class);
+
     @Override
     public VentaModel guardarVenta(VentaModel venta) throws Exception {
         try {
             Csv csv = new Csv();
             conexion cn = new conexion();
-            
-            String detalle = venta.getListaVentaDetalle()!=null? csv.generarCsv(venta.getListaVentaDetalle()) :"";
-            String query = "select * from sh_atworkpf.fn_registra_venta_v2("+venta.getCliente_id()+","+venta.getTotal_venta()+",'"+detalle+"')";
+
+            String detalle = venta.getListaVentaDetalle() != null ? csv.generarCsv(venta.getListaVentaDetalle()) : "";
+            String query = "select * from sh_atworkpf.fn_registra_venta_v2(" + venta.getCliente_id() + "," + venta.getTotal_venta() + ",'" + detalle + "')";
             logger.error(query);
-            
-            System.out.println("Query "+query);
-            ResultSet rs = cn.Query(query);         
+
+            System.out.println("Query " + query);
+            ResultSet rs = cn.Query(query);
             while (rs.next()) {
                 venta.setVenta_id(rs.getInt("out_ventaid"));
                 venta.setFecha(rs.getString("out_fechaven"));
                 venta.setRespuesta(rs.getInt("out_resp"));
-                venta.setCadenacodigo(rs.getString("out_codreser")); 
+                venta.setCadenacodigo(rs.getString("out_codreser"));
                 venta.setFechaActual(rs.getString("out_fecha"));
-                
+
             }
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -48,28 +50,57 @@ public class VentaDaoImpl implements ventaDao{
 
     @Override
     public VentaModel actualizarVenta(VentaModel venta) throws Exception {
-            try {
+        try {
             Csv csv = new Csv();
             conexion cn = new conexion();
-            venta.setRespuesta(3);
-            String detalle = venta.getListaVentaDetalle()!=null? csv.generarCsv(venta.getListaVentaDetalle()) :"";
-            String query = "select * from sh_atworkpf.fn_actualizar_venta_v3("+venta.getVenta_id()+",'"+detalle+"',"+venta.getTotal_venta()+")";
+            venta.setRespuesta(4);
+            String detalle = venta.getListaVentaDetalle() != null ? csv.generarCsv(venta.getListaVentaDetalle()) : "";
+            String query = "select * from sh_atworkpf.fn_actualizar_venta_v3(" + venta.getVenta_id() + ",'" + detalle + "'," + venta.getTotal_venta() + ")";
             logger.error(query);
-            
-            System.out.println("Query "+query);
-            ResultSet rs = cn.Query(query);         
+
+            System.out.println("Query " + query);
+            ResultSet rs = cn.Query(query);
             while (rs.next()) {
-                venta.setVenta_id(rs.getInt("out_ventaid"));
-                venta.setFecha(rs.getString("out_fechaven"));
-                venta.setRespuesta(rs.getInt("out_resp"));
-                venta.setCadenacodigo(rs.getString("out_codreser")); 
-                venta.setFechaActual(rs.getString("out_fecha"));
-                
+                venta.setVenta_id(rs.getInt("rs_idventa"));
+                venta.setFecha(rs.getString("rs_fecha_venta"));
+                venta.setRespuesta(rs.getInt("rs_resp"));
+                venta.setCadenacodigo(rs.getString("rs_codreser"));
+                venta.setFechaActual(rs.getString("rs_fecha_actual"));
+
             }
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
         return venta;
     }
-    
+
+    @Override
+    public int limpiarVenta(VentaModel venta) throws Exception {
+        int respuesta = 3;
+        try {
+            conexion cn = new conexion();
+            String query = "select * from sh_atworkpf.fn_limpiar_v1(" + venta.getVenta_id() + ")";
+            logger.error(query);
+            System.out.println("Query " + query);
+            ResultSet rs = cn.Query(query);
+            while (rs.next()) {
+                respuesta = rs.getInt("resp");
+
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return respuesta;
+    }
+
+    @Override
+    public VentaModel generarCorrelativo(int venta_id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int guardarJson(int venta_id, String jsonVentaFe, String jsonCodigoCanje) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

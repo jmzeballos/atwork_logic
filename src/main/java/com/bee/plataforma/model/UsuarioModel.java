@@ -20,6 +20,14 @@ public class UsuarioModel {
    private String usuario;
    private String password;
    private String passwordEmpresa;
+   private String celular;
+   private String fechaNacimiento;
+   private String sexo;
+   private int departamento_id;
+   private int provincia_id;
+   private int distrito_id;  
+   
+   
    /*Para realizar venta*/
    private int venta_id;
    private int codigo_disponible;   
@@ -30,6 +38,7 @@ public class UsuarioModel {
    /*Para validar respuesta de la base de datos*/
    private int respuesta;
    private String contenido;
+   private String nombreEmpresa;
  
 
     public UsuarioModel() {
@@ -179,6 +188,62 @@ public class UsuarioModel {
 
     public void setFecha_actual(String fecha_actual) {
         this.fecha_actual = fecha_actual;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public int getDepartamento_id() {
+        return departamento_id;
+    }
+
+    public void setDepartamento_id(int departamento_id) {
+        this.departamento_id = departamento_id;
+    }
+
+    public int getProvincia_id() {
+        return provincia_id;
+    }
+
+    public void setProvincia_id(int provincia_id) {
+        this.provincia_id = provincia_id;
+    }
+
+    public int getDistrito_id() {
+        return distrito_id;
+    }
+
+    public void setDistrito_id(int distrito_id) {
+        this.distrito_id = distrito_id;
+    }
+
+    public String getNombreEmpresa() {
+        return nombreEmpresa;
+    }
+
+    public void setNombreEmpresa(String nombreEmpresa) {
+        this.nombreEmpresa = nombreEmpresa;
     }
 
    

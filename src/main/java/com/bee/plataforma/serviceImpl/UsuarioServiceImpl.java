@@ -16,9 +16,11 @@ import org.springframework.stereotype.Service;
  * @author Lealva
  */
 @Service
-public class UsuarioServiceImpl implements UsuarioService{
+public class UsuarioServiceImpl implements UsuarioService {
+
     @Autowired
     private UsuarioDao usuarioDao;
+
     @Override
     public int usuarioregistra(UsuarioModel usuario) throws Exception {
         return usuarioDao.usuarioregistra(usuario);
@@ -26,7 +28,27 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Override
     public UsuarioModel accesoUsuario(UsuarioModel usuario) throws Exception {
-    return usuarioDao.accesoUsuario(usuario);
+        return usuarioDao.accesoUsuario(usuario);
     }
-    
+
+    @Override
+    public int actualizarcontraseña(UsuarioModel usuario) throws Exception {
+        return usuarioDao.actualizarcontraseña(usuario);
+    }
+
+    @Override
+    public int verificarrecuperacontraseña(UsuarioModel usuario) throws Exception {
+        return usuarioDao.verificarrecuperacontraseña(usuario);
+    }
+
+    @Override
+    public int usuarioactualiza(UsuarioModel usuario) throws Exception {
+        return usuarioDao.usuarioactualiza(usuario);
+    }
+
+    @Override
+    public UsuarioModel usuarioperfil(UsuarioModel usuario) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

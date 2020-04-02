@@ -16,4 +16,11 @@ public interface VentaService {
     public VentaModel guardarVenta(VentaModel venta) throws Exception;
 
     public VentaModel actualizarVenta(VentaModel venta) throws Exception;
+
+    public int limpiarVenta(VentaModel venta) throws Exception;
+
+    public VentaModel generarCorrelativo(int venta_id);
+
+    public int guardarJson(int venta_id, String jsonVentaFe, String jsonCodigoCanje);
+
 }
