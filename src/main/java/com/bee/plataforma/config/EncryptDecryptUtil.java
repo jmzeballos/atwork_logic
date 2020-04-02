@@ -46,7 +46,7 @@ public class EncryptDecryptUtil {
     public static void main(String[] args) {
         try {
             System.out.println("---------------------------------------------");
-            String value="71489400";
+            String value="123";
                                            
           //  String value = "8FP4H23FM/odSQghXVgD7A==";
             value=EncryptDecryptUtil.encryptPhrase(value);
