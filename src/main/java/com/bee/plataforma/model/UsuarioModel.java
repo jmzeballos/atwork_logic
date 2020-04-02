@@ -7,7 +7,7 @@ package com.bee.plataforma.model;
 
 /**
  *
- * @author Lealva
+ * @author Lealva SAC
  */
 public class UsuarioModel {
    private int usuario_id;
