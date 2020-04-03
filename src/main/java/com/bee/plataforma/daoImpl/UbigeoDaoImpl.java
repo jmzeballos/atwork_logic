@@ -27,7 +27,7 @@ public class UbigeoDaoImpl implements UbigeoDao{
         
         try {
             conexion cn = new conexion();
-            ResultSet rs =cn.Query("select * from sh_atworkpf.fn_ubigeo_departamento_lista()");
+            ResultSet rs =cn.Query("select * from sh_atworkpf.fn_ubigeo_departamento_listar()");
             while (rs.next()){
                 UbigeoModel ubiMd= new UbigeoModel();
                 ubiMd.setDepartamento_id(rs.getString("out_iddep"));

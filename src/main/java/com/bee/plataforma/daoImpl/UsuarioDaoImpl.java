@@ -98,7 +98,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
         int respuesta = 0;
         try {
             conexion cn = new conexion();
-            String query = "select * from sh_atworkpf.fn_usuario_editar(" + usuario.getUsuario_id() + ",'" + usuario.getCorreo() + "','" + usuario.getCelular()
+            String query = "select * from sh_atworkpf.fn_usuario_editar_v2(" + usuario.getUsuario_id() + ",'" + usuario.getCorreo() + "','" + usuario.getCelular()
                     + "','" + usuario.getFechaNacimiento() + "'," + usuario.getDepartamento_id() + ","
                     + usuario.getProvincia_id() + "," + usuario.getDistrito_id() + ",'" + usuario.getSexo() + "')";
             logger.error(query);

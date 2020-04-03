@@ -48,7 +48,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public UsuarioModel usuarioperfil(UsuarioModel usuario) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            return usuarioDao.usuarioperfil(usuario);
     }
 
 }
