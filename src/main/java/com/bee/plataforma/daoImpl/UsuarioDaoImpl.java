@@ -98,7 +98,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
         int respuesta = 0;
         try {
             conexion cn = new conexion();
-            String query = "select * from sh_atworkpf.fn_usuario_recuperar_clave(" + usuario.getUsuario_id() + ",'" + usuario.getCorreo() + "','" + usuario.getCelular()
+            String query = "select * from sh_atworkpf.fn_usuario_editar(" + usuario.getUsuario_id() + ",'" + usuario.getCorreo() + "','" + usuario.getCelular()
                     + "','" + usuario.getFechaNacimiento() + "'," + usuario.getDepartamento_id() + ","
                     + usuario.getProvincia_id() + "," + usuario.getDistrito_id() + ",'" + usuario.getSexo() + "')";
             logger.error(query);
@@ -145,7 +145,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
         try {
             conexion cn = new conexion();
             String value = EncryptDecryptUtil.encryptPhrase(usuario.getPassword());
-            String query = "select * from sh_atworkpf.fn_usuario_recuperar_clave(" + usuario.getUsuario_id() + ",'" + value + "')";
+            String query = "select * from sh_atworkpf.fn_usuario_actualizar_clave(" + usuario.getUsuario_id() + ",'" + value + "')";
             logger.error(query);
 
             System.out.println("Query " + query);
@@ -163,7 +163,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
     public UsuarioModel usuarioperfil(UsuarioModel usuario) throws Exception {
         try {
             conexion cn = new conexion();
-            String query = "select * from sh_atworkpf.fn_usuario_recuperar_clave(" + usuario.getUsuario_id() + ")";
+            String query = "select * from sh_atworkpf.fn_usuario_listar(" + usuario.getUsuario_id() + ")";
             logger.error(query);
 
             System.out.println("Query " + query);
