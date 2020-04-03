@@ -169,14 +169,15 @@ public class UsuarioDaoImpl implements UsuarioDao {
             System.out.println("Query " + query);
             ResultSet rs = cn.Query(query);
             while (rs.next()) {
-                usuario.setCorreo(rs.getString("out_resp"));
-                usuario.setNombreEmpresa(rs.getString("out_idusu"));
-                usuario.setCelular(rs.getString("out_nombre"));
-                usuario.setFechaNacimiento(rs.getString("out_apellido"));
-                usuario.setSexo(rs.getString("out_apellido"));
-                usuario.setDepartamento_id(rs.getInt("out_apellido"));
-                usuario.setProvincia_id(rs.getInt("out_apellido"));
-                usuario.setDistrito_id(rs.getInt("out_apellido"));
+                usuario.setRespuesta(rs.getInt("out_resp"));
+                usuario.setCorreo(rs.getString("out_email"));
+                usuario.setNombreEmpresa(rs.getString("out_emp"));
+                usuario.setCelular(rs.getString("out_celu"));
+                usuario.setFechaNacimiento(rs.getString("out_fechanac"));
+                usuario.setSexo(rs.getString("out_sexo"));
+                usuario.setDepartamento_id(rs.getInt("out_dep"));
+                usuario.setProvincia_id(rs.getInt("out_prov"));
+                usuario.setDistrito_id(rs.getInt("out_dist"));
             }
 
         } catch (Exception e) {
