@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bee.plataforma.correo;
+package com.bee.correo.service;
+
+import com.bee.correo.model.EnvioModel;
 
 /**
  *
  * @author Lealva
  */
-public class CuerpoEnvioDocumentosVenta {
-    public String CuerpoEnvio(){
-        return "";
-    }
+public interface EnvioService {
+
+    public boolean guardarCorreo(EnvioModel envio) throws Exception;
 }

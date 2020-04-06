@@ -8,7 +8,7 @@ package com.bee.plataforma.daoImpl;
 import com.bee.plataforma.config.EncryptDecryptUtil;
 import com.bee.plataforma.config.EnvioMail;
 import com.bee.plataforma.config.conexion;
-import com.bee.plataforma.correo.CuerpoEnvioRecPassword;
+import com.bee.correo.util.CuerpoEnvioRecPassword;
 import com.bee.plataforma.dao.UsuarioDao;
 import com.bee.plataforma.model.UsuarioModel;
 import java.sql.ResultSet;

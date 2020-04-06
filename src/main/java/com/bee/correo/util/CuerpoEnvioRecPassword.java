@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bee.plataforma.correo;
+package com.bee.correo.util;
 
 import com.bee.plataforma.config.EncryptDecryptUtil;
 import java.net.URLEncoder;
