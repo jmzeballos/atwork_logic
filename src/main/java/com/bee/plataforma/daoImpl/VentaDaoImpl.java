@@ -32,7 +32,7 @@ public class VentaDaoImpl implements ventaDao {
             conexion cn = new conexion();
 
             String detalle = venta.getListaVentaDetalle() != null ? csv.generarCsv(venta.getListaVentaDetalle()) : "";
-            String query = "select * from sh_atworkpf.fn_registra_venta_v2(" + venta.getCliente_id() + "," + venta.getTotal_venta() + ",'" + detalle + "')";
+            String query = "select * from sh_atworkpf.fn_registra_venta_v3(" + venta.getCliente_id() + "," + venta.getTotal_venta() + ",'" + detalle + "')";
             logger.error(query);
 
             System.out.println("Query " + query);
@@ -58,7 +58,7 @@ public class VentaDaoImpl implements ventaDao {
             conexion cn = new conexion();
             venta.setRespuesta(4);
             String detalle = venta.getListaVentaDetalle() != null ? csv.generarCsv(venta.getListaVentaDetalle()) : "";
-            String query = "select * from sh_atworkpf.fn_actualizar_venta_v3(" + venta.getVenta_id() + ",'" + detalle + "'," + venta.getTotal_venta() + ")";
+            String query = "select * from sh_atworkpf.fn_actualizar_venta_v4(" + venta.getVenta_id() + ",'" + detalle + "'," + venta.getTotal_venta() + ")";
             logger.error(query);
 
             System.out.println("Query " + query);
