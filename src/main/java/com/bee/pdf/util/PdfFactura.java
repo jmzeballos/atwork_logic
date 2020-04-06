@@ -65,7 +65,7 @@ public class PdfFactura {
         document.addTitle("Comprobante de Pago");
         Image logoPrize;
         try {
-            URL urlimagen = PdfFactura.class.getResource("/img/prize.png");
+            URL urlimagen = PdfFactura.class.getResource("/img/logo-bee.png");
             logoPrize = Image.getInstance(urlimagen);
             logoPrize.scaleToFit(80, 80);            
             document.add(logoPrize);

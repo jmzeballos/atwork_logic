@@ -57,22 +57,26 @@ public class HeaderFooter extends PdfPageEventHelper {
     @Override
     public void onEndPage(PdfWriter writer, Document document) {
         Image logoEmpresa;
-        int widthImg=0;
+        int widthImg = 0;
         float posicionY = 0;
         URL ubicacionImgEmprea = null;
         URL ubicacionBar = null;
-        System.out.println("Empresa"+nombreempresa);
-        System.out.println("Negocio"+nombrenegocio);
+        System.out.println("Empresa" + nombreempresa);
+        System.out.println("Negocio" + nombrenegocio);
         try {
             switch (nombreempresa) {
                 case "touring":
                     ubicacionImgEmprea = HeaderFooter.class.getResource("/img/logoBig.jpg");
-                    widthImg=100;
+                    widthImg = 100;
                     posicionY = 460f;
                     break;
-                    case "scotiabank":
+                case "scotiabank":
                     ubicacionImgEmprea = HeaderFooter.class.getResource("/img/logoScotiabank.png");
-                    widthImg=100;
+                    widthImg = 100;
+                    break;
+                case "atwork":
+                    ubicacionImgEmprea = HeaderFooter.class.getResource("/img/logo-bee.png");
+                    widthImg = 100;
                     break;
             }
             switch (nombrenegocio) {
@@ -82,6 +86,10 @@ public class HeaderFooter extends PdfPageEventHelper {
                     break;
                 case "promo":
                     ubicacionBar = HeaderFooter.class.getResource("/img/barPromo.png");
+                    colorpersonalizado = new Color(0, 24, 73);
+                    break;
+                case "plataforma":
+                    ubicacionBar = HeaderFooter.class.getResource("/img/bar.png");
                     colorpersonalizado = new Color(0, 24, 73);
                     break;
             }
@@ -107,30 +115,34 @@ public class HeaderFooter extends PdfPageEventHelper {
     }
 
     private void addHeader(PdfWriter writer) {
-           BaseFont baseFont = null;
+        BaseFont baseFont = null;
         try {
-            baseFont = BaseFont.createFont(GenerarPdf.class.getResource("/estilos/TTNorms-Bold.otf").toString(), "Cp1252",  true);
+            baseFont = BaseFont.createFont(GenerarPdf.class.getResource("/estilos/TTNorms-Bold.otf").toString(), "Cp1252", true);
         } catch (DocumentException ex) {
             Logger.getLogger(GenerarPdf.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(GenerarPdf.class.getName()).log(Level.SEVERE, null, ex);
         }
-        URL ubicacionImgNegocio=null;
+        URL ubicacionImgNegocio = null;
         Image logoNegocio = null;
         try {
             /*LOGO DE NEGOCIO*/
             try {
-                
-                 switch (nombrenegocio) {
-                case "benefit":
-                    ubicacionImgNegocio = HeaderFooter.class.getResource("/img/Grupo 1333.png");
-                    colorpersonalizado = new Color(0, 24, 73);
-                    break;
+
+                switch (nombrenegocio) {
+                    case "benefit":
+                        ubicacionImgNegocio = HeaderFooter.class.getResource("/img/Grupo 1333.png");
+                        colorpersonalizado = new Color(0, 24, 73);
+                        break;
                     case "promo":
-                    ubicacionImgNegocio = HeaderFooter.class.getResource("/img/CinePromo.png");
-                    colorpersonalizado = new Color(0, 24, 73);
-                    break;
-            }
+                        ubicacionImgNegocio = HeaderFooter.class.getResource("/img/CinePromo.png");
+                        colorpersonalizado = new Color(0, 24, 73);
+                        break;
+                    case "plataforma":
+                        ubicacionImgNegocio = HeaderFooter.class.getResource("/img/logo.png");
+                        colorpersonalizado = new Color(0, 24, 73);
+                        break;
+                }
                 logoNegocio = Image.getInstance(ubicacionImgNegocio);
                 logoNegocio.scaleToFit(300, 300);
             } catch (IOException exception) {
@@ -176,24 +188,27 @@ public class HeaderFooter extends PdfPageEventHelper {
     }
 
     private void addFooter(PdfWriter writer) {
-                   BaseFont baseFontBold = null;
-           BaseFont baseFontRegular = null;
+        BaseFont baseFontBold = null;
+        BaseFont baseFontRegular = null;
         try {
-             baseFontBold = BaseFont.createFont(GenerarPdf.class.getResource("/estilos/TTNorms-Bold.otf").toString(), "Cp1252",  true);
-            baseFontRegular = BaseFont.createFont(GenerarPdf.class.getResource("/estilos/TTNorms-Regular.otf").toString(), "Cp1252",  true);
-         } catch (DocumentException ex) {
+            baseFontBold = BaseFont.createFont(GenerarPdf.class.getResource("/estilos/TTNorms-Bold.otf").toString(), "Cp1252", true);
+            baseFontRegular = BaseFont.createFont(GenerarPdf.class.getResource("/estilos/TTNorms-Regular.otf").toString(), "Cp1252", true);
+        } catch (DocumentException ex) {
             Logger.getLogger(GenerarPdf.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(GenerarPdf.class.getName()).log(Level.SEVERE, null, ex);
         }
         switch (nombrenegocio) {
-                case "benefit":
-                    colorpersonalizado = new Color(0, 24, 73);
-                    break;
-                    case "promo":
-                    colorpersonalizado = new Color(0, 24, 73);
-                    break;
-            }
+            case "benefit":
+                colorpersonalizado = new Color(0, 24, 73);
+                break;
+            case "promo":
+                colorpersonalizado = new Color(0, 24, 73);
+                break;
+            case "plataforma":
+                colorpersonalizado = new Color(0, 24, 73);
+                break;
+        }
         PdfPTable footer = new PdfPTable(1);
         PdfPCell cell = new PdfPCell();
         cell.setBorder(Rectangle.TOP);
@@ -241,17 +256,17 @@ public class HeaderFooter extends PdfPageEventHelper {
         Phrase termino5 = new Phrase();
         termino5.setFont(fontTextTermino);
         termino5.add(".Los boletos para canje no son válidos para la primera semana de estreno (a excepción de los boletos Prime sin restricción), salas 3D y/o restricciones indicadas por la casa distribuidora.");
-       /* termino5.add(termino5N);
-        termino5.add(").");*/
+        /* termino5.add(termino5N);
+         termino5.add(").");*/
         PdfPCell Celltermino5 = new PdfPCell(termino5);
         Celltermino5.setBorder(0);
         footer.addCell(Celltermino5);
-       /* Phrase termino6 = new Phrase();
-        termino6.setFont(fontTextTermino);
-        termino6.add(".No válido en salas 3D");
-        PdfPCell Celltermino6 = new PdfPCell(termino6);
-        Celltermino6.setBorder(0);
-        footer.addCell(Celltermino6);*/
+        /* Phrase termino6 = new Phrase();
+         termino6.setFont(fontTextTermino);
+         termino6.add(".No válido en salas 3D");
+         PdfPCell Celltermino6 = new PdfPCell(termino6);
+         Celltermino6.setBorder(0);
+         footer.addCell(Celltermino6);*/
         Phrase termino7 = new Phrase();
         termino7.setFont(fontTextTermino);
         termino7.add(".Válido para acumular puntos y visitas como Socio Cineplanet.");

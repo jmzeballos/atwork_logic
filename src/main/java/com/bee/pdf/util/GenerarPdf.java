@@ -41,12 +41,15 @@ public class GenerarPdf {
             case "benefit":
                 colorpersonalizado = new Color(0, 24, 73);
                 break;
+            case "plataforma":
+                colorpersonalizado = new Color(0, 24, 73);
+                break;
         }
         BaseFont baseFontBold = null;
-           BaseFont baseFontRegular = null;
+        BaseFont baseFontRegular = null;
         try {
-            baseFontBold = BaseFont.createFont(GenerarPdf.class.getResource("/estilos/TTNorms-Bold.otf").toString(), "Cp1252",  true);
-            baseFontRegular = BaseFont.createFont(GenerarPdf.class.getResource("/estilos/TTNorms-Regular.otf").toString(), "Cp1252",  true);
+            baseFontBold = BaseFont.createFont(GenerarPdf.class.getResource("/estilos/TTNorms-Bold.otf").toString(), "Cp1252", true);
+            baseFontRegular = BaseFont.createFont(GenerarPdf.class.getResource("/estilos/TTNorms-Regular.otf").toString(), "Cp1252", true);
         } catch (DocumentException ex) {
             Logger.getLogger(GenerarPdf.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -63,8 +66,8 @@ public class GenerarPdf {
             document.addTitle("Cupones de compra");
             /*============================CUERPO DEL PDF==========================================================*/
             /*=======ENTRADAS=============================*/
-             Paragraph paragraphUsuario = new Paragraph();
-            paragraphUsuario.add(new Phrase("Hola "+ jsonObject.get("nombrecliente").getAsString()+", estos son tus códigos Cineplanet: ", fontTitulo));
+            Paragraph paragraphUsuario = new Paragraph();
+            paragraphUsuario.add(new Phrase("Hola " + jsonObject.get("nombrecliente").getAsString() + ", estos son tus códigos Cineplanet: ", fontTitulo));
             paragraphUsuario.setAlignment(Element.ALIGN_LEFT);
             paragraphUsuario.add(new Phrase(Chunk.NEWLINE));
             paragraphUsuario.add(new Phrase(Chunk.NEWLINE));
@@ -102,7 +105,7 @@ public class GenerarPdf {
                         document.add(paragraphText);
                         Paragraph CodigoEntrada1 = new Paragraph();
                         CodigoEntrada1.add(new Phrase(objCaodigoCanje.get("codigocanje").getAsString(), fontTitulo));
-                        CodigoEntrada1.setAlignment(Element.ALIGN_LEFT);                  
+                        CodigoEntrada1.setAlignment(Element.ALIGN_LEFT);
                         CodigoEntrada1.add(new Phrase(Chunk.NEWLINE));
                         PdfPTable tableCodigo = new PdfPTable(1);
                         PdfPCell cellcodigo;
