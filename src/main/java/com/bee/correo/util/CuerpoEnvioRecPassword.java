@@ -18,7 +18,7 @@ public class CuerpoEnvioRecPassword {
         String id = URLEncoder.encode(EncryptDecryptUtil.encryptPhrase(codigo_ciente), "UTF-8");
         String nombre = URLEncoder.encode(EncryptDecryptUtil.encryptPhrase(cliente), "UTF-8");
 
-        /* String cadena = "<!DOCTYPE html>\n"
+        String cadena = "<!DOCTYPE html>\n"
          + "<html lang=\"es\" xmlns=\"http://www.w3.org/1999/xhtml\">\n"
          + "\n"
          + "<head>\n"
@@ -178,18 +178,8 @@ public class CuerpoEnvioRecPassword {
          + "  </table>\n"
          + "</body>\n"
          + "\n"
-         + "</html>";*/
-        String cadena = "<!DOCTYPE html>\n"
-                + "<html lang=\"en\">\n"
-                + "<head>\n"
-                + "    <meta charset=\"UTF-8\">\n"
-                + "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
-                + "    <title>Document</title>\n"
-                + "</head>\n"
-                + "<body>\n"
-                + "    Hola a todos\n"
-                + "</body>\n"
-                + "</html>";
+         + "</html>";
+
         return cadena;
     }
 
