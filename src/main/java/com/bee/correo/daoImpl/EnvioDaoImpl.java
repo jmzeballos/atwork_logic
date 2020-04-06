@@ -11,11 +11,13 @@ import com.bee.plataforma.config.conexPostG;
 import com.bee.plataforma.config.conexion;
 import java.sql.ResultSet;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Lealva
  */
+@Repository
 public class EnvioDaoImpl implements EnvioDao {
     Logger logger = Logger.getLogger(EnvioDaoImpl.class);
     @Override
