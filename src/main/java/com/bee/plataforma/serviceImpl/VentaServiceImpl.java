@@ -5,9 +5,11 @@
  */
 package com.bee.plataforma.serviceImpl;
 
+import com.bee.fe.model.boletaModel;
 import com.bee.plataforma.dao.ventaDao;
 import com.bee.plataforma.model.VentaModel;
 import com.bee.plataforma.service.VentaService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,13 +39,18 @@ public class VentaServiceImpl implements VentaService {
     }
 
     @Override
-    public VentaModel generarCorrelativo(int venta_id) {
+    public int generarCorrelativo(int venta_id) {
         return venDao.generarCorrelativo(venta_id);
     }
 
     @Override
     public int guardarJson(int venta_id, String jsonVentaFe, String jsonCodigoCanje) {
         return venDao.guardarJson(venta_id, jsonVentaFe, jsonCodigoCanje);
+    }
+
+    @Override
+    public List<boletaModel> obtenerDatosBoleta(int codigoVenta) {
+        return venDao.obtenerDatosBoleta(codigoVenta);
     }
 
 }

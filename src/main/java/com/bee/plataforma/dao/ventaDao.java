@@ -5,7 +5,9 @@
  */
 package com.bee.plataforma.dao;
 
+import com.bee.fe.model.boletaModel;
 import com.bee.plataforma.model.VentaModel;
+import java.util.List;
 
 /**
  *
@@ -19,7 +21,9 @@ public interface ventaDao {
 
     public int limpiarVenta(VentaModel venta) throws Exception;
 
-    public VentaModel generarCorrelativo(int venta_id);
+    public int generarCorrelativo(int venta_id);
 
     public int guardarJson(int venta_id, String jsonVentaFe, String jsonCodigoCanje);
+
+    public List<boletaModel> obtenerDatosBoleta(int codigoVenta);
 }

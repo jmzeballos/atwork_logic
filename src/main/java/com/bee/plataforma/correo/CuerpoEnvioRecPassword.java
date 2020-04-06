@@ -66,7 +66,7 @@ public class CuerpoEnvioRecPassword {
                 + "            margin-bottom: 16px;\n"
                 + "            line-height: normal;\n"
                 + "            margin-top:24px;\">\n"
-                + "            <a href=\"http://localhost:8084/plataforma/plataforma.password?id=" + id + "&usu=" + nombre +" target=\"_blank\">linkrestblecercontraseñaatwork</a>\n"
+                + "            <a href=\"http://localhost:8084/plataforma/plataforma.password?id=" + id + "&usu=" + nombre +"\" target=\"_blank\">linkrestblecercontraseñaatwork</a>\n"
                 + "          </p>\n"
                 + "        </td>\n"
                 + "      </tr>\n"
@@ -183,10 +183,11 @@ public class CuerpoEnvioRecPassword {
     }
 
     public static void main(String[] args) throws Exception {
-        String id = URLEncoder.encode(EncryptDecryptUtil.encryptPhrase("1"), "UTF-8");
+        /*String id = URLEncoder.encode(EncryptDecryptUtil.encryptPhrase("1"), "UTF-8");
         String cliente = URLEncoder.encode(EncryptDecryptUtil.encryptPhrase("Alicia Esmeral Cerna"), "UTF-8");
         //String cliente = EncryptDecryptUtil.decryptPhrase("0uWNNv9HMKFbu+F0D97HsteJpjLEfTfy");
         System.out.println("Mensaje" + id);
-        System.out.println("Mensaje" + cliente);
+        System.out.println("Mensaje" + cliente);*/
+        System.out.println("Cuerpo: "+ new CuerpoEnvioRecPassword().cuerpoEnvio("1","1552"));
     }
 }

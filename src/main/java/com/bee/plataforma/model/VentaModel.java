@@ -26,6 +26,10 @@ public class VentaModel {
     private String jsonCodigo;
     private String cadenacodigo;
     private String fechaActual;
+    /*datos en sesion*/
+    private String nombreCliente;
+    private String correoCliente;
+    private String apellidoCliente;
     public int getVenta_id() {
         return venta_id;
     }
@@ -120,6 +124,30 @@ public class VentaModel {
 
     public void setFechaActual(String fechaActual) {
         this.fechaActual = fechaActual;
+    }
+
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
+
+    public String getCorreoCliente() {
+        return correoCliente;
+    }
+
+    public void setCorreoCliente(String correoCliente) {
+        this.correoCliente = correoCliente;
+    }
+
+    public String getApellidoCliente() {
+        return apellidoCliente;
+    }
+
+    public void setApellidoCliente(String apellidoCliente) {
+        this.apellidoCliente = apellidoCliente;
     }
     
 

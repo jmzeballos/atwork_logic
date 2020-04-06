@@ -13,6 +13,8 @@ import com.bee.fe.model.oAdquirienteBean;
 import com.bee.fe.model.oEmisorBean;
 import com.bee.fe.model.oProductoBean;
 import com.bee.fe.model.parametrosAdicionalesReporteBean;
+import com.bee.plataforma.daoImpl.UsuarioDaoImpl;
+import com.bee.plataforma.daoImpl.VentaDaoImpl;
 import com.bee.plataforma.model.UsuarioModel;
 import com.google.gson.Gson;
 import java.util.ArrayList;
@@ -54,9 +56,9 @@ public class GenerarJsonFe {
             oEmisor.setUrbanizacion("MAGDALENA DEL MAR");
 
             datosEnv.put("oEmisor", oEmisor);
-
-           // perMod = perServ.obtienePersona(codigoPersona);
-
+            UsuarioModel usu = new UsuarioModel();
+            usu.setUsuario_id(codigoPersona);
+            perMod = new UsuarioDaoImpl().usuarioperfil(usu);
             oAdquiriente.setCodigoTipoDocumentoIdentidad("1"); //TIPO DNI
             oAdquiriente.setNumeroDocumentoIdentidad(perMod.getDni());
             oAdquiriente.setDescripcionTipoDocumentoIdentidad("DNI"); //DESCRIPCION DNI
@@ -65,9 +67,9 @@ public class GenerarJsonFe {
 
             datosEnv.put("oAdquiriente", oAdquiriente);
 
-           // bolMod = boletaServi.obtenerDatosBoleta(codigoVenta);
+           bolMod = new VentaDaoImpl().obtenerDatosBoleta(codigoVenta);
 
-            ArrayList<lDetalleDocVentaBean> ArraylDetalleBoletaVenta = new ArrayList<lDetalleDocVentaBean>();
+            ArrayList<lDetalleDocVentaBean> ArraylDetalleBoletaVenta = new ArrayList<>();
             for (boletaModel mod : bolMod) {
 
                 //lDetalleBoletaVenta = new lDetalleDocVentaBean();

@@ -5,11 +5,14 @@
  */
 package com.bee.plataforma.daoImpl;
 
+import com.bee.fe.model.boletaModel;
 import com.bee.plataforma.config.Csv;
 import com.bee.plataforma.config.conexion;
 import com.bee.plataforma.dao.ventaDao;
 import com.bee.plataforma.model.VentaModel;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
@@ -94,13 +97,77 @@ public class VentaDaoImpl implements ventaDao {
     }
 
     @Override
-    public VentaModel generarCorrelativo(int venta_id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int generarCorrelativo(int venta_id) {
+        int respuesta =0;
+        try {
+            conexion cn = new conexion();
+            String query = "select * from sh_atworkpf.fn_genera_correlativoventa_v2(" + venta_id + ",1)";
+            logger.error(query);
+            System.out.println("Query " + query);
+            ResultSet rs = cn.Query(query);
+            while (rs.next()) {
+                respuesta = rs.getInt("corre");
+
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return respuesta;
     }
 
     @Override
     public int guardarJson(int venta_id, String jsonVentaFe, String jsonCodigoCanje) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       int respuesta = 3;
+        try {
+            conexion cn = new conexion();
+            String query = "select * from sh_atworkpf.fn_confirmar_venta_v2(" + venta_id + ",'"+jsonVentaFe+"','"+jsonCodigoCanje+"')";
+            logger.error(query);
+            System.out.println("Query " + query);
+            ResultSet rs = cn.Query(query);
+            while (rs.next()) {
+             respuesta= rs.getInt("resp");
+
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return respuesta;
+    }
+
+    @Override
+    public List<boletaModel> obtenerDatosBoleta(int codigoVenta) {
+        ResultSet res;
+        String result;
+        ArrayList<boletaModel> ListBolMod = new ArrayList<>();
+        try {
+            conexion cn = new conexion();
+            result = "select * from sh_atworkpf.fn_boleta(" + codigoVenta + ")";
+            res = cn.Query(result);
+            while (res.next()) {
+                boletaModel bolMod = new boletaModel();
+                bolMod.setId(codigoVenta);
+                bolMod.setSerie(res.getString("serie"));
+                bolMod.setVentanrodoc(res.getString("ventanrodoc"));
+                bolMod.setProducto_id(res.getInt("productoid"));
+                bolMod.setProducto_nombre(res.getString("productonombre"));
+                bolMod.setVenta_cantidad(res.getInt("ventacantidad"));
+                bolMod.setTotal_vendido(res.getDouble("totalvendido"));
+                bolMod.setPrecio_total_no_igv(res.getDouble("preciototal"));
+                bolMod.setIgv_total(res.getDouble("igvtotal"));
+                bolMod.setPrecio_venta(res.getDouble("precioventa"));
+                bolMod.setPrecio_base_no_igv(res.getDouble("preciobase"));
+                bolMod.setIgv_base(res.getDouble("igvbase"));
+                bolMod.setVenta_total(res.getDouble("ventatotal"));
+                bolMod.setOrden(res.getInt("ventaorden"));
+                bolMod.setProd_cod_interno(res.getString("productocodigointerno"));
+                bolMod.setFechareg(res.getString("fecharegi"));
+
+                ListBolMod.add(bolMod);
+            }
+        } catch (Exception e) {
+            logger.error("Persona : " + e.getMessage());
+        }
+        return ListBolMod;
     }
 
 }

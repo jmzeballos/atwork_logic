@@ -1,0 +1,72 @@
+{
+    "numeroSerie": "BXXX",
+    "lImpuesto": [{
+            "codigoTipoAfectacionIGV": "10",
+            "montoTotalMonedaOriginal": 3.05,
+            "codigoInternacional": "VAT",
+            "montoBaseMonedaOriginal": 16.95,
+            "nombre": "IGV",
+            "porcentaje": 18.0,
+            "codigo": "1000"
+        }],
+    "codigoTipoMoneda": "PEN",
+    "oEmisor": {
+        "apellidosNombresDenominacionRazonSocial": "PRIZE PROMOTION S.A.C.",
+        "codigoTipoDocumentoIdentidad": "6",
+        "codigoEstablecimientoAnexo": "0000",
+        "codigoUbicacionGeografica": "150120",
+        "numeroDocumentoIdentidad": "20605636889",
+        "nombreComercial": "PRIZE",
+        "distrito": "MAGDALENA DEL MAR",
+        "provincia": "LIMA",
+        "codigoPais": "PE",
+        "departamento": "LIMA",
+        "direccion": "AV. ANTONIO MIROQUESADA 427 - Ofc 511 ( EX AV. JUÁN DE ALIAGA ) MAGDALENA DEL MAR - LIMA",
+        "urbanizacion": "MAGDALENA DEL MAR"
+    },
+    "codigoTipoOperacion": "0101",
+    "fechaEmision": "2020-04-03T00:00:00-05:00",
+    "lNota": [{
+            "descripcion": "VEINTE Y 0/100 SOLES.",
+            "codigo": "1000"
+        }],
+    "oAdquiriente": {
+        "apellidosNombresDenominacionRazonSocial": "Alicia Cerna",
+        "descripcionTipoDocumentoIdentidad": "DNI",
+        "codigoTipoDocumentoIdentidad": "1",
+        "numeroDocumentoIdentidad": "71489400",
+        "codigoPais": "PE"
+    },
+    "montoTotalMonedaOriginal": 20.0,
+    "parametrosAdicionalesReporte": {
+        "totalapagar": "20.0"
+    },
+    "codigoTipoDocumento": "03",
+    "numeroCorrelativo": "00000008",
+    "horaEmision": "2020-04-03T13:25:53-05:00",
+    "lDetalleBoletaVenta": [{
+            "oProducto": {
+                "codigoUnidadMedida": "NIU",
+                "descripcion": "Estandar",
+                "codigoSunat": "10000000",
+                "codigo": "E11"
+            },
+            "lImpuesto": [{
+                    "codigoTipoAfectacionIGV": "10",
+                    "montoTotalMonedaOriginal": 3.05,
+                    "codigoInternacional": "VAT",
+                    "montoBaseMonedaOriginal": 16.95,
+                    "nombre": "IGV",
+                    "porcentaje": 18.0,
+                    "codigo": "1000"
+                }],
+            "montoValorVentaUnitarioMonedaOriginal": 8.475,
+            "montoValorVentaTotalMonedaOriginal": 16.95,
+            "montoPrecioVentaUnitarioMonedaOriginal": 10.0,
+            "montoTotalMonedaOriginal": 20.0,
+            "numeroOrden": 1,
+            "cantidad": 2.0
+        }],
+    "montoValorVentaMonedaOriginal": 16.95,
+    "montoImpuestoMonedaOriginal": 3.05
+}

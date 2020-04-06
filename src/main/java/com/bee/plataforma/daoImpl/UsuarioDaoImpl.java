@@ -131,7 +131,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
             }
             if (usuario.getRespuesta() == 1) {
                 EnvioMail envio = new EnvioMail();
-                envio.sendMail("pedidos@beepedidos.com.pe", usuario.getCorreo(), "Cambio de Contraseña Cineplanet Atwork", new CuerpoEnvioRecPassword().cuerpoEnvio(String.valueOf(usuario.getUsuario_id()), usuario.getNombre() + " " + usuario.getApellido()));
+                envio.sendMail("atencionalcliente@bee.com.pe", usuario.getCorreo(), "Cambio de Contraseña Cineplanet Atwork", new CuerpoEnvioRecPassword().cuerpoEnvio(String.valueOf(usuario.getUsuario_id()), usuario.getNombre() + " " + usuario.getApellido()));
             }
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -178,6 +178,9 @@ public class UsuarioDaoImpl implements UsuarioDao {
                 usuario.setDepartamento_id(rs.getInt("out_dep"));
                 usuario.setProvincia_id(rs.getInt("out_prov"));
                 usuario.setDistrito_id(rs.getInt("out_dist"));
+                usuario.setNombre(rs.getString("out_nom"));
+                usuario.setApellido(rs.getString("out_ape"));
+                usuario.setDni(rs.getString("out_dni")); 
             }
 
         } catch (Exception e) {

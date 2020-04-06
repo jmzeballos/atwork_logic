@@ -51,15 +51,66 @@ public class EnvioMail {
             request.setBody(mail.build());
             response = sg.api(request);
             System.out.println(response.getStatusCode());
-            System.out.println(response.getBody());
-            System.out.println(response.getHeaders());
         } catch (IOException ex) {
             //  logger.log(Level.SEVERE, "error del sistema", ex);
             throw ex;
         }
         return response;
     }
+public Response sendMailTicketPrimerEnvio(String fromMail, String toMail, String subjectMail, String body, String base64PDF, String fileName, String base64FE, String fileNameFE) throws IOException, Exception {
+        Map<String, String> resp = new HashMap<String, String>();
+        Email from = new Email(fromMail);
+        String subject = subjectMail;
+        Content content = new Content("text/html", body);
+        //Mail mail = new Mail(from, subject, to, content);
+        Mail mail = new Mail();
+        mail.setFrom(from);
+        mail.setSubject(subject);
+        mail.addContent(content);
+        mail.addCategory("bee");
+        mail.addCategory("8");
+        EncryptKeyMail key = new EncryptKeyMail();
+        mail.addCategory(key.getRandomKey("8", toMail));
+        Personalization pers = new Personalization();
+        mail.addCategory(key.getRandomKey("8", toMail));
+        pers.addCc(new Email(toMail.trim()));
+        mail.addPersonalization(pers);
 
+        Attachments attachments2 = new Attachments();
+        attachments2.setFilename(fileName);
+        attachments2.setType("application/pdf");
+        attachments2.setDisposition("attachment");
+        String attachmentContent2 = base64PDF;
+        attachments2.setContent(attachmentContent2);
+        mail.addAttachments(attachments2);
+
+        Attachments attachments3 = new Attachments();
+        attachments3.setFilename(fileNameFE);
+        attachments3.setType("application/pdf");
+        attachments3.setDisposition("attachment");
+        String attachmentContent3 = base64FE;
+        attachments3.setContent(attachmentContent3);
+        mail.addAttachments(attachments3);
+
+ 
+
+        // seteo del key
+        SendGrid sg = new SendGrid("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");
+        Request request = new Request();
+        //preparando el envio
+        try {
+            request.setMethod(Method.POST);
+            request.setEndpoint("mail/send");
+            request.setBody(mail.build());
+            Response response = sg.api(request);
+
+            Logger.getLogger("Estado Email API").log(Level.WARNING, "{0}", response.getStatusCode());
+            return response;
+        } catch (Exception e) {
+            //logger.log(Level.SEVERE, "error del sistema", e);
+            return null;
+        }
+    }
     public Response sendMailTicket(String fromMail, String toMail, String subjectMail, String body, String base64PDF, String fileName, String base64FE, String fileNameFE, String base64FEXML, String fileNameXML) throws IOException, Exception {
         Map<String, String> resp = new HashMap<String, String>();
         Email from = new Email(fromMail);
