@@ -5,6 +5,8 @@
  */
 package com.bee.plataforma.config;
 
+import com.bee.correo.daoImpl.EnvioDaoImpl;
+import com.bee.correo.model.EnvioModel;
 import com.sendgrid.Attachments;
 import com.sendgrid.Content;
 import com.sendgrid.Email;
@@ -37,11 +39,17 @@ public class EnvioMail {
         mail.addCategory("bee");
         mail.addCategory("8");
         EncryptKeyMail key = new EncryptKeyMail();
-        mail.addCategory(key.getRandomKey("8", toMail));
-        Personalization pers = new Personalization();      
+        String keyenvio = key.getRandomKey("8", toMail);
+        mail.addCategory(keyenvio);
+        Personalization pers = new Personalization();
         pers.addTo(new Email(toMail.trim()));
         mail.addPersonalization(pers);
-        System.out.println("Error" + mail);
+        EnvioModel envio = new EnvioModel();
+        envio.setCanalenvio(8);
+        envio.setEmail(toMail);
+        envio.setKey(keyenvio);
+        boolean respuesta = new EnvioDaoImpl().guardarCorreo(envio);
+        System.out.println("RESPUESTA REGISTRO  " + respuesta);
         Response response = null;
         SendGrid sg = new SendGrid("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");
         Request request = new Request();
@@ -57,7 +65,8 @@ public class EnvioMail {
         }
         return response;
     }
-public Response sendMailTicketPrimerEnvio(String fromMail, String toMail, String subjectMail, String body, String base64PDF, String fileName, String base64FE, String fileNameFE) throws IOException, Exception {
+
+    public Response sendMailTicketPrimerEnvio(String fromMail, String toMail, String subjectMail, String body, String base64PDF, String fileName, String base64FE, String fileNameFE) throws IOException, Exception {
         Map<String, String> resp = new HashMap<String, String>();
         Email from = new Email(fromMail);
         String subject = subjectMail;
@@ -92,8 +101,6 @@ public Response sendMailTicketPrimerEnvio(String fromMail, String toMail, String
         attachments3.setContent(attachmentContent3);
         mail.addAttachments(attachments3);
 
- 
-
         // seteo del key
         SendGrid sg = new SendGrid("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");
         Request request = new Request();
@@ -111,6 +118,7 @@ public Response sendMailTicketPrimerEnvio(String fromMail, String toMail, String
             return null;
         }
     }
+
     public Response sendMailTicket(String fromMail, String toMail, String subjectMail, String body, String base64PDF, String fileName, String base64FE, String fileNameFE, String base64FEXML, String fileNameXML) throws IOException, Exception {
         Map<String, String> resp = new HashMap<String, String>();
         Email from = new Email(fromMail);
