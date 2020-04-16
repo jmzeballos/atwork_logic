@@ -33,19 +33,41 @@ public class EmpresaDaoImpl implements EmpresaDao {
             String query = "select * from sh_atworkpf.fn_empresa_listar_v2()";
             logger.error(query);
             ResultSet rs = cn.Query(query);
-            System.out.println("Query: "+query);
+            System.out.println("Query: " + query);
             while (rs.next()) {
                 EmpresaModel empresa = new EmpresaModel();
                 empresa.setEmpresa_id(rs.getInt("out_empid"));
                 empresa.setNombre(rs.getString("out_empnom"));
                 empresa.setEstado(rs.getInt("resp"));
                 listaEmpresa.add(empresa);
-            }            
+            }
         } catch (SQLException e) {
             logger.error(e.getMessage());
         }
         return listaEmpresa;
 
+    }
+
+    @Override
+    public List<EmpresaModel> buscarEmpresa(String empresa) throws Exception {
+        List<EmpresaModel> listaEmpresa = new ArrayList<>();
+        try {
+            conexion cn = new conexion();
+            String query = "select * from sh_atworkpf.fn_empresa_listar_v3('" + empresa + "')";
+            logger.error(query);
+            ResultSet rs = cn.Query(query);
+            System.out.println("Query: " + query);
+            while (rs.next()) {
+                EmpresaModel emp = new EmpresaModel();
+                emp.setEmpresa_id(rs.getInt("out_empid"));
+                emp.setNombre(rs.getString("out_empnom"));
+                emp.setEstado(rs.getInt("resp"));
+                listaEmpresa.add(emp);
+            }
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        }
+        return listaEmpresa;
     }
 
 }

@@ -15,4 +15,6 @@ import java.util.List;
 public interface EmpresaDao {
 
     public List<EmpresaModel> listarEmpresa() throws Exception;
+
+    public List<EmpresaModel> buscarEmpresa(String empresa) throws Exception;
 }

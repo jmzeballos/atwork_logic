@@ -27,4 +27,9 @@ public class EmpresaServiceImpl implements EmpresaService {
         return empresaDao.listarEmpresa();
     }
 
+    @Override
+    public List<EmpresaModel> buscarEmpresa(String empresa) throws Exception {
+        return empresaDao.buscarEmpresa(empresa);
+    }
+
 }
