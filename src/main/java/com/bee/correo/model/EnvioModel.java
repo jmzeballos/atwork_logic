@@ -16,6 +16,8 @@ public class EnvioModel {
     private String adjunto64;
     private String  obs;
     private String key;
+    private String mail;
+
 
     public EnvioModel() {
     }
@@ -66,6 +68,14 @@ public class EnvioModel {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
     
 }
