@@ -31,8 +31,8 @@ public class PeliculaDaoImpl implements PeliculaDao{
             ResultSet rs =cn.Query("select * from sh_atworkpf.fn_movie_listar_v1()");
             while (rs.next()){
                 PeliculaModel peli= new PeliculaModel();
-                peli.setNombre(rs.getString("out_trailer"));
-                peli.setImagen(rs.getString("out_name"));
+                peli.setNombre(rs.getString("out_name"));
+                peli.setImagen(rs.getString("out_trailer"));
                 peli.setPelicula_id(rs.getInt("out_id"));
                 listaPelicula.add(peli);
             }
